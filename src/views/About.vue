@@ -5,7 +5,7 @@
       <v-row class="d-flex justify-center ao">
         <v-col cols="12" md="2" >
           <v-card>
-            <v-img width="160" src="@/assets/creators/1.jpg">
+            <v-img src="@/assets/creators/1.jpg">
             </v-img>
             <v-card-text>
               <b>Дмитрий</b>
@@ -15,7 +15,7 @@
         </v-col>
         <v-col cols="12" md="2">
         <v-card>
-            <v-img width="160" src="@/assets/creators/2.jpg">
+            <v-img src="@/assets/creators/2.jpg">
             </v-img>
           <v-card-text class="mx-auto">
             <b>Дарья</b>
@@ -35,7 +35,7 @@
         </v-col>
         <v-col cols="10" md="2">
         <v-card>
-            <v-img width="160" src="@/assets/creators/4.jpg">
+            <v-img src="@/assets/creators/4.jpg">
             </v-img>
             <v-card-text class="mx-auto">
               <b>Александр</b>
@@ -45,7 +45,7 @@
         </v-col>
         <v-col cols="10" md="2">
         <v-card>
-            <v-img width="160" src="@/assets/creators/5.jpg">
+            <v-img src="@/assets/creators/5.jpg">
             </v-img>
             <v-card-text class="mx-auto">
               <b>Александра</b>
