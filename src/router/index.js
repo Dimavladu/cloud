@@ -7,31 +7,52 @@ const routes = [
   {
     path: '/',
     name: 'Home',
-    component: function () {
-      return import('../views/Home.vue')
-    }
+    meta:{
+      layout: 'main'
+    },
+    component: () => import('../views/Home.vue')
   },
   {
     path: '/about',
     name: 'About',
-    component: function () {
-      return import('../views/About.vue')
-    }
+    meta:{
+      layout: 'main'
+    },
+    component: () => import('../views/About.vue')
   },
   {
-    path: '/another',
-    name: 'Another',
-    component: function () {
-      return import('../views/Another.vue')
-    }
+    path: '/available',
+    name: 'Available',
+    meta:{
+      layout: 'main'
+    },
+    component: () => import('../views/Available.vue')
   },
   {
     path: '/user',
     name: 'User',
-    component: function () {
-      return import('../views/User.vue')
-    }
-  }
+    meta:{
+      layout: 'main'
+    },
+    component: () => import('../views/User.vue')
+  },
+  {
+    path: '/login',
+    name: 'Login',
+    meta: {
+      layout: 'auth'
+    },
+    component: () => import('../views/auth/login')
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    meta: {
+      layout: 'auth'
+    },
+    component: () => import('../views/auth/register')
+  },
+
 ]
 
 const router = new VueRouter({

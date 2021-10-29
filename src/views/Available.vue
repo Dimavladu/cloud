@@ -1,15 +1,9 @@
 <template>
   <div>
-    <v-container>
-      <div class="d-flex">
-        <h5 class="text-h5 font-weight-light my-4 justify-start">Мои файлы</h5>
-        <v-btn icon>
-          <v-icon>mdi-add</v-icon>
-        </v-btn>
-      </div>
-
-      <v-divider/>
-        <files :files="files" :folders="folders"/>
+    <v-container class="">
+      <h5 class="text-h5 font-weight-light my-4">Доступные мне</h5>
+        <v-divider/>
+        <files :files="files" :folders="folders" />
     </v-container>
   </div>
 </template>
@@ -24,30 +18,33 @@ export default {
         color: 'blue',
         icon: 'mdi-file-document',
         subtitle: 'Октябрь 20, 2021',
-        title: 'Отчет 1',
+        title: 'РГР Мат анализ',
+      },
+      {
+        color: 'green',
+        icon: 'mdi-file-excel',
+        subtitle: 'Октябрь 29, 2021',
+        title: 'Ковариация',
       },
       {
         color: 'red',
         icon: 'mdi-file-powerpoint',
-        subtitle: 'Октябрь 10, 2021',
-        title: 'СППР',
+        subtitle: 'Октябрь 17, 2021',
+        title: 'Управление проектами',
       },
     ],
     folders: [
       {
         subtitle: 'Октябрь 9, 2021',
-        title: 'Фото',
+        color: 'red',
+        title: 'Учеба',
       },
       {
         subtitle: 'Октябрь 17, 2021',
+        color: 'yellow',
         title: 'Личное',
       },
-      {
-        subtitle: 'Октябрь 28, 2021',
-        title: 'Работа',
-      },
     ],
-
   }),
   components: {files}
 }
