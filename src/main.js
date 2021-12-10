@@ -1,10 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
-import router from './router'
+import router from '@/router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 
-import firebase from 'firebase/app'
 Vue.config.productionTip = false
 
 new Vue({
@@ -12,6 +11,5 @@ new Vue({
   store,
   vuetify,
   render: function (h) { return h(App) }
-})
-    .$mount('#app')
+}).$mount('#app')
 

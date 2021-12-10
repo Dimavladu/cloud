@@ -14,3 +14,6 @@ module.exports = {
     }])
   }
 }
+// module.exports = {
+//   outputDir: path.resolve(__dirname, )
+// }

@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
-
+tests
+intense-reaches-78573
+src
+public
 # local env files
 .env.local
 .env.*.local

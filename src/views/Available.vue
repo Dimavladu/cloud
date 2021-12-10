@@ -19,18 +19,21 @@ export default {
         icon: 'mdi-file-document',
         subtitle: 'Октябрь 20, 2021',
         title: 'РГР Мат анализ',
+        id: '342346'
       },
       {
         color: 'green',
         icon: 'mdi-file-excel',
         subtitle: 'Октябрь 29, 2021',
         title: 'Ковариация',
+        id: '342563'
       },
       {
         color: 'red',
         icon: 'mdi-file-powerpoint',
         subtitle: 'Октябрь 17, 2021',
         title: 'Управление проектами',
+        id: '3256346'
       },
     ],
     folders: [
@@ -38,11 +41,13 @@ export default {
         subtitle: 'Октябрь 9, 2021',
         color: 'red',
         title: 'Учеба',
+        id: '6456234'
       },
       {
         subtitle: 'Октябрь 17, 2021',
         color: 'yellow',
         title: 'Личное',
+        id: '6453456234'
       },
     ],
   }),
