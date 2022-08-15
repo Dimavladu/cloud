@@ -37,7 +37,7 @@
         </v-list-item>
 
         <v-divider v-if="thisFiles.length"/>
-        <v-list-item v-if="thisFiles.length" v-for="(file, i) in thisFiles" :key="file.id">
+        <v-list-item v-for="(file, i) in thisFiles" :key="file.id">
           <v-list-item-avatar>
             <v-icon class="grey lighten-1" dark icon v-text="'mdi-file-document-outline'"/>
           </v-list-item-avatar>
@@ -100,13 +100,8 @@ export default {
   },
   data: () =>({
     downloadDialog: false,
-    icons: {
-      pptx: 'mdi-file-powerpoint',
-      ppt: 'mdi-file-powerpoint'
-    }
   }),
   methods:{
-
       fileSize(size) {
         if (size >= 1024) return (size / 1024).toFixed(2) + ' Мб'
         else if (size >= 1024 ** 2) return (size / 1024 ** 2).toFixed(2) + ' Гб'
@@ -119,6 +114,9 @@ export default {
         this.files[i].dialog = false
         this.$store.dispatch('file/deleteFile', [id, file])
       }
+  },
+  updated(){
+    // this.$store.commit('file/clearSearch')
   },
   components:{myBtn}
 }

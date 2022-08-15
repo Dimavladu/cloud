@@ -5,6 +5,7 @@ export default {
     state(){
         return{
             files: [],
+            resFiles: [],
             currentDir: null,
             fileMessage: {},
             fileProgress: [],
@@ -45,7 +46,14 @@ export default {
         },
         changeShowFileProgress(state, param){
             state.showFileProgress = param
-        }
+        },
+        clearSearch(state){
+            state.resFiles = []
+        },
+        setSearch(state, search){
+           (!state.resFiles.length && search) ? state.resFiles = state.files : state.files = state.resFiles
+           state.files = state.files.filter(file => file.name.toLowerCase().includes(search))
+        },
     },
     actions:{
         setFileMessage({commit}, message){
@@ -167,10 +175,6 @@ export default {
                     timeout: 3000
                 })
             }
-            // const res = await axios.get(url, rootGetters['auth/authHeader']+{responseType: 'blob'})
-            //     .then(file => file.data)
-            //
-            // await axios.get
         }
     },
     getters: {

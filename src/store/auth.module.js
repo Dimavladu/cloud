@@ -115,7 +115,7 @@ export default {
                 commit('logout')
             }
         },
-        async updateUserInfo({commit, dispatch, getters}, payload){
+        async updateUserInfo({dispatch, getters}, payload){
             try {
                 const url = `http://localhost:8080/api/auth`
                 const res = await axios.patch(url, payload, getters.authHeader)

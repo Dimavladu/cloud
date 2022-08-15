@@ -11,8 +11,8 @@ const corsMiddleware = require('./server/middleware/cors.middleware')
 const app = express()
 const PORT = process.env.PORT || 8080
 
-
 app.use('/', serveStatic(path.join(__dirname, '/dist')))
+
 app.use(fileUpload({}))
 app.use(corsMiddleware)
 app.use(express.json())

@@ -1,80 +1,62 @@
 <template>
   <div>
     <v-app-bar app color="primary" dark height="65" class="pr-3">
-      <v-row>
-        <v-col class="my-auto d-flex align-baseline" cols="5" md="3" offset="1" @click="changeBeer">
-          <img v-if="beer" class="my-auto pb-1" height="45" src="https://psv4.userapi.com/c532036/u108566543/docs/d4/02815d48a845/beer.gif?extra=_RZS-utCjs9x3mNDozI0cAlxmfW4jxChhNVRJwRt1pIGwimjI8Tcq-_RPdJFdJk-0DCEAmjT_6bkoLojEI57_ZmPG7A717cxWQ1L_vBgO6wFeWHoGLzaBL1zK49UJUR10OW6P6EzosFdTXfTD10dxrSBtbfy" alt="1">
-          <img v-else class="my-auto pb-1" height="45" src="https://sun9-1.userapi.com/impg/8z11l5sZq7cPWQ4ZsrS4l-roFTXQrIGySL69dA/5Q2R-65cKeQ.jpg?size=100x100&quality=96&sign=db2dd7a1c66c8cf2d119c2787f743749&type=album" alt="1">
-          <v-tooltip bottom>
-            <template v-slot:activator="{ on, attrs }">
-              <v-progress-linear
-                  color="light-blue"
-                  class="ml-2 my-auto"
-                  height="30"
-                  :value="diskSize"
-                  striped
-                  rounded
-                  disabled=""
-                  v-bind="attrs"
-                  v-on="on"
-              >
-                <strong v-text="diskSize.toFixed() + '%'"/>
-              </v-progress-linear>
-            </template>
-            <span>{{$store.state.auth.user.usedSpace}}/{{$store.state.auth.user.diskSpace}} Кб</span>
-          </v-tooltip>
-        </v-col>
-        <v-spacer/>
-        <v-col cols="auto" >
-          <v-btn
-              v-if="$route.path!=='/user'"
-              icon x-large
-              @click.stop="$router.push('/user')"
-              class="mx-2 "
-          >
-            <v-avatar color="grey" size="48">
-              <span class="white--text text-h5" v-text="initials"/>
-            </v-avatar>
-          </v-btn>
-          <v-btn
-              v-else-if="$route.path==='/user'"
-              icon
-              x-large
-              @click.stop="$router.push('/my')"
-              class="mx-2"
-          >
-            <v-icon v-text="'mdi-home'"/>
-          </v-btn>
-          <v-btn @click="logout" icon>
-            <v-icon color="white" v-text="'mdi-exit-to-app'"/>
-          </v-btn>
-        </v-col>
-<!--        <v-col cols="1" />-->
-      </v-row>
+      <v-container class="d-flex">
+        <v-row>
+          <v-col class="ml-2 d-flex my-auto" cols="3" md="3">
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on, attrs }">
+                <v-progress-linear
+                    color="light-blue"
+                    class="ml-2 "
+                    height="30"
+                    :value="diskSize"
+                    striped
+                    rounded
+                    disabled=""
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                  <strong v-text="diskSize.toFixed() + '%'"/>
+                </v-progress-linear>
+              </template>
+              <span>{{$store.state.auth.user.usedSpace}}/{{$store.state.auth.user.diskSpace}} Кб</span>
+            </v-tooltip>
+          </v-col>
+          <v-col class="pt-7" cols="5" md="3" offset="1">
+           <v-text-field placeholder="Поиск" v-model="search">
+  
+           </v-text-field>
+         </v-col>
+          <v-col class="my-auto ml-auto" cols="auto" >
+            <v-btn
+                v-if="$route.path!=='/user'"
+                icon x-large
+                @click.stop="$router.push('/user')"
+                class="mx-2 "
+            >
+              <v-avatar color="grey" size="48">
+                <span class="white--text text-h5" v-text="initials"/>
+              </v-avatar>
+            </v-btn>
+            <v-btn
+                v-else-if="$route.path==='/user'"
+                icon
+                x-large
+                @click.stop="$router.push('/my')"
+                class="mx-2"
+            >
+              <v-icon v-text="'mdi-home'"/>
+            </v-btn>
+            <v-btn @click="logout" icon>
+              <v-icon color="white" v-text="'mdi-exit-to-app'"/>
+            </v-btn>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-app-bar>
-<!--    <v-bottom-navigation-->
-<!--        :value="value"-->
-<!--        color="primary"-->
-<!--        absolute-->
-<!--    >-->
-<!--      <div v-for="item in navItems">-->
-<!--        <v-btn @click="$router.push(item.path)">-->
-<!--          <span>{{item.name}}</span>-->
-<!--          <v-icon>{{item.icon}}</v-icon>-->
-<!--        </v-btn>-->
-<!--      </div>-->
-<!--    </v-bottom-navigation>-->
     <snackbar/>
-<!--    <v-alert text color="indigo" class="p-fixed" width="300">-->
-<!--      <h3 class="text-h5">-->
-<!--        Lorem Ipsum-->
-<!--      </h3>-->
-<!--      <div class="">123</div>-->
-<!--      <v-divider-->
-<!--          class="my-4 info"-->
-<!--          style="opacity: 0.22"-->
-<!--      ></v-divider>-->
-<!--    </v-alert>-->
+
       <v-banner
           v-if="showFileProgress"
           class="p-fixed"
@@ -95,11 +77,6 @@
               :key="file.id"
               class="mr-1 my-0 pb-1 d-flex"
           >
-<!--            <v-col class="pa-0 my-auto" cols="2">-->
-<!--              <v-btn x-small class="float-right" icon>-->
-<!--                <v-icon v-text="'mdi-close'"/>-->
-<!--              </v-btn>-->
-<!--            </v-col>-->
             <v-col class="py-0" cols="10">
                 <div class="my-text" v-text="file.name"/>
                 <v-progress-linear :value="file.percent"/>
@@ -108,7 +85,6 @@
         </v-container>
       </v-banner>
     </div>
-
 
 </template>
 
@@ -127,12 +103,10 @@ export default {
       this.$store.commit('file/clearFileProgress')
       //ПОСЛЕ ЗАКРЫТИЯ БАННЕРА С ЗАГРУЗКОЙ ОН БОЛЬШЕ НЕ ПОЯВЛЯЕТСЯ И ФАЙЛЫ НЕ ЗАГРУЖАЮТСЯ
     },
-    changeBeer(){
-      this.$store.dispatch('auth/setBeer')
-    }
   },
 
   data: () => ({
+    search: '',
     toggle: false,
     showBanner: false,
     value: 30,
@@ -153,13 +127,17 @@ export default {
     ...mapGetters({
       user: 'auth/user',
       initials: 'auth/initials',
-      beer: 'auth/beer',
       progressFiles: 'file/fileProgress',
       showFileProgress: 'file/showFileProgress'
     }),
     diskSize(){
       return this.user.usedSpace/(this.user.diskSpace/100)
     }
+  },
+  watch:{
+    search(search) {
+      this.$store.commit('file/setSearch', search)
+      }
   },
   components: {snackbar}
 }
